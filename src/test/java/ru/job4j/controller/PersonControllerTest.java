@@ -67,6 +67,7 @@ class PersonControllerTest {
                 .thenReturn(Optional.of(Person.of(1, "LOGIN_1", "PASS_1")));
 
         mockMvc.perform(get("/person/{id}", anyInt()))
+                .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.login", is("LOGIN_1")))
                 .andExpect(jsonPath("$.password", is("PASS_1")));
